@@ -1,0 +1,21 @@
+package: aceeditor
+version: 1.0.0
+author: 'Friends Of REDAXO'
+supportpage: 'https://github.com/FriendsOfREDAXO/aceeditor'
+
+pages:
+  system/aceeditor: { title: translate:aceeditor_title }
+
+pjax: false
+
+requires:
+  php:
+    version: '>=7.4, <8.3' # benötigt mindestens PHP 7.4
+  redaxo: '^5.8' # benötigt mindestens REDAXO 5.8
+
+default_config:
+  active: ''
+  selectors: 'textarea.rex-code, textarea.rex-js-code, textarea.aceeditor, textarea.codemirror'
+  theme: 'eclipse'
+  darktheme: 'dracula'
+  options: "{\n\"showLineNumbers\": true,\n\"showGutter\": true,\n\"showInvisibles\": false,\n\"fontSize\": 15,\n\"mode\": \"ace/mode/php\",\n\"displayIndentGuides\": false,\n\"highlightIndentGuides\": false\n}"

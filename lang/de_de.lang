@@ -26,3 +26,4 @@ aceeditor_config_infotext4 = Die Default-Optionen die oben definiert sind könne
 
 aceeditor_error_codemirror = AceEditor kann nicht aktiviert werden da das Plugin Codemirror aktiv ist. Codemirror muss deaktiviert werden! Siehe unter System->Customizer.
 aceeditor_error_unzip = Beim entpacken der Assets aus dem AceEditor-Archiv ist ein Fehler aufgetreten!
+aceeditor_success_message = <br>Die Einstellungen können unter <b>System</b> auf der Seite {0} vorgenommen werden.

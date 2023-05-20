@@ -35,3 +35,5 @@ if (!$addon->hasConfig('darktheme')) {
 if ('' !== $message) {
     throw new rex_functional_exception($message);
 }
+
+$addon->setProperty('successmsg', rex_i18n::rawMsg('aceeditor_success_message', '<a href="' . rex_url::backendPage('system/aceeditor') . '">' . $addon->i18n('aceeditor_title') . '</a>'));

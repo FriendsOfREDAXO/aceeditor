@@ -128,6 +128,7 @@ $(document).on('rex:ready', function () {
                     bindKey: { win: 'F11', mac: 'F11' },
                     exec: function (editor) {
                         editor.container.classList.toggle('acefullscreen');
+                        $('html').toggleClass('acefullscreenbody');
                         document.body.classList.toggle('acefullscreenbody');
                         editor.resize();
                     }
@@ -137,6 +138,7 @@ $(document).on('rex:ready', function () {
                     bindKey: { win: 'ESC', mac: 'ESC' },
                     exec: function (editor) {
                         editor.container.classList.toggle('acefullscreen');
+                        $('html').toggleClass('acefullscreenbody');
                         document.body.classList.toggle('acefullscreenbody');
                         editor.resize();
                     }

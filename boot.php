@@ -12,6 +12,11 @@ if (true === rex::isBackend() && null !== rex::getUser() && '|1|' === $addon->ge
         return;
     }
 
+    // Set default selectors if not present
+    if ('' === $config['selectors'] ) {
+        $config['selectors'] = 'textarea.rex-code, textarea.rex-js-code, textarea.aceeditor, textarea.codemirror';
+    }
+
     rex_view::setJsProperty('aceeditor_selectors', $config['selectors']);
     rex_view::setJsProperty('aceeditor_defaulttheme', $config['theme']);
     rex_view::setJsProperty('aceeditor_defaultdarktheme', $config['darktheme']);

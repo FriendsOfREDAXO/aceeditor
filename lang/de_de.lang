@@ -12,6 +12,7 @@ aceeditor_config_infotext = Hinweis: Mit den Tasten F11 und ESC kann der Fullscr
 aceeditor_config_legend2 = AceEditor Themes
 aceeditor_config_theme = Default Theme
 aceeditor_config_darktheme = Default Theme Darkmode
+aceeditor_config_theme_preview = Theme-Vorschau
 
 aceeditor_config_legend3 = AceEditor Optionen
 aceeditor_config_options = Default AceEditor Optionen

@@ -48,6 +48,27 @@ foreach ($themes as $theme) {
     $select->addOption($theme, $theme);
 }
 
+$field = $form->addRawField('<dl class="rex-form-group form-group"><dt>' . $addon->i18n('config_theme_preview') . '</dt><dd><textarea class="form-control aceeditor themepreview" rows="15">
+<?php
+function nfact($n) {
+    if ($n == 0) {
+        return 1;
+    }
+    else {
+        return $n * nfact($n - 1);
+    }
+}
+
+echo "\n\nPlease enter a whole number ... ";
+$num = trim(fgets(STDIN));
+
+// ===== PROCESS - Determing the factorial of the input number =====
+$output = "\n\nFactorial " . $num . " = " . nfact($num) . "\n\n";
+echo $output;
+
+?>
+</textarea></dd></dl>');
+
 // AceEditor Options
 $field = $form->addFieldset($addon->i18n('config_legend3'));
 
@@ -69,3 +90,20 @@ $fragment->setVar('class', 'edit', false);
 $fragment->setVar('title', $addon->i18n('aceeditor_config_title'), false);
 $fragment->setVar('body', $form->get(), false);
 echo $fragment->parse('core/page/section.php');
+?>
+
+<script>
+$(document).on('rex:ready', function () {
+    $('#aceeditor-themes-theme').on('change', function() {
+        $('.themepreview').prev().remove();
+        editor = textAreaToAceEditor($('textarea.themepreview')[0]);
+        editor.setTheme('ace/theme/' + this.value);
+    });
+
+    $('#aceeditor-themes-darktheme').on('change', function() {
+        $('.themepreview').prev().remove();
+        editor = textAreaToAceEditor($('textarea.themepreview')[0]);
+        editor.setTheme('ace/theme/' + this.value);
+    });
+});
+</script>

@@ -1,5 +1,12 @@
 # AceEditor - Changelog
 
+## Version 1.0.2 - 23.05.2023
+
+### Features
+
+* Theme-Vorschau verbessert
+* Mindesthöhe auf 200px falls Textarea kleiner ist
+
 ## Version 1.0.1 - 21.05.2023
 
 ### Features

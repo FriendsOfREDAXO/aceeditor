@@ -48,7 +48,7 @@ foreach ($themes as $theme) {
     $select->addOption($theme, $theme);
 }
 
-$field = $form->addRawField('<dl class="rex-form-group form-group"><dt>' . $addon->i18n('config_theme_preview') . '</dt><dd><textarea class="form-control aceeditor themepreview" rows="15">
+$field = $form->addRawField('<dl class="rex-form-group form-group"><dt>' . $addon->i18n('config_theme_preview') . '</dt><dd><textarea class="form-control aceeditor themepreview" rows="15" data-theme="' . $addon->getConfig('theme') . '">
 <?php
 function nfact($n) {
     if ($n == 0) {
@@ -98,12 +98,23 @@ $(document).on('rex:ready', function () {
         $('.themepreview').prev().remove();
         editor = textAreaToAceEditor($('textarea.themepreview')[0]);
         editor.setTheme('ace/theme/' + this.value);
+        $('textarea.themepreview').data('theme', this.value);
     });
 
     $('#aceeditor-themes-darktheme').on('change', function() {
         $('.themepreview').prev().remove();
         editor = textAreaToAceEditor($('textarea.themepreview')[0]);
         editor.setTheme('ace/theme/' + this.value);
+        $('textarea.themepreview').data('theme', this.value);
+    });
+
+    $('.dropdown-toggle').on('focus', function() {
+        if ($(this).attr('title') != $('textarea.themepreview').data('theme')) {
+            $('.themepreview').prev().remove();
+            editor = textAreaToAceEditor($('textarea.themepreview')[0]);
+            editor.setTheme('ace/theme/' + $(this).attr('title'));
+            $('textarea.themepreview').data('theme', $(this).attr('title'));
+        }
     });
 });
 </script>

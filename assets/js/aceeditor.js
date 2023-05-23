@@ -26,7 +26,10 @@ function textAreaToAceEditor(textArea) {
     // Insert DIV for AceEditor
     let editorNode = document.createElement('div');
     editorNode.style.width = '100%';
-    editorNode.style.height = $(textArea).height() + 'px' || '250px';
+    editorNode.style.height = $(textArea).height() + 'px' || '200px';
+    if ($(textArea).height() < 200) {
+        editorNode.style.height = '200px';
+    }
     textArea.parentNode.insertBefore(editorNode, textArea);
 
     // Hide Textarea

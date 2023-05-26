@@ -1,4 +1,4 @@
-# AceEditor - The high performance code editor for **REDAXO**
+# AceEditor - The high performance code editor for **REDAXO** - Replacement for codemirror
 
 Dieses AddOn bindet den Code-Editor **AceEditor** v1.21.1 im Backend ein.
 

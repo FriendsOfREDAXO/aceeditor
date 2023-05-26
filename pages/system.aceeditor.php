@@ -83,6 +83,7 @@ $field = $form->addRawField('<dl class="rex-form-group form-group"><dt></dt><dd>
 $field = $form->addRawField('<dl class="rex-form-group form-group"><dt></dt><dd><p>'.$addon->i18n('config_infotext2').'</p></dd></dl>');
 $field = $form->addRawField('<dl class="rex-form-group form-group"><dt></dt><dd><p>'.$addon->i18n('config_infotext3').'</p></dd></dl>');
 $field = $form->addRawField('<dl class="rex-form-group form-group"><dt></dt><dd><p>'.$addon->i18n('config_infotext4').'</p></dd></dl>');
+$field = $form->addRawField('<dl class="rex-form-group form-group"><dt></dt><dd><p>'.$addon->i18n('config_infotext5').'</p></dd></dl>');
 
 // Ausgabe des Formulars
 $fragment = new rex_fragment();

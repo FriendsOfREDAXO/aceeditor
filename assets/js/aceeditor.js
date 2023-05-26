@@ -54,6 +54,11 @@ function textAreaToAceEditor(textArea) {
         console.warn('Addon aceeditor: Error in aceeditor-Options! Using minimum default configuration!');
     }
 
+    // readonly from Textarea-Attribute
+    if (null !== textArea.getAttribute('readonly')) {
+        editor.setReadOnly(true);
+    }
+
     // Additional Settings from Attribute aceeditor-options
     add_options = textArea.getAttribute('aceeditor-options');
     if (null !== add_options) {

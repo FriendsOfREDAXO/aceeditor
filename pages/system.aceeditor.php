@@ -48,7 +48,7 @@ foreach ($themes as $theme) {
     $select->addOption($theme, $theme);
 }
 
-$field = $form->addRawField('<dl class="rex-form-group form-group"><dt>' . $addon->i18n('config_theme_preview') . '</dt><dd><textarea class="form-control aceeditor themepreview" rows="15" data-theme="' . $addon->getConfig('theme') . '">
+$field = $form->addRawField('<dl class="rex-form-group form-group"><dt>' . $addon->i18n('config_theme_preview') . '</dt><dd><textarea class="form-control aceeditor themepreview" readonly rows="15" data-theme="' . $addon->getConfig('theme') . '">
 <?php
 function nfact($n) {
     if ($n == 0) {

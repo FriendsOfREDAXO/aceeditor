@@ -1,12 +1,12 @@
 # AceEditor - The high performance code editor for **REDAXO** - Replacement for codemirror
 
-Dieses AddOn bindet den Code-Editor **AceEditor** v1.21.1 im Backend ein.
+Dieses AddOn bindet den Code-Editor **AceEditor** v1.22.0 im Backend ein.
 
 Die Einstellungen zum AddOn sind unter System zu finden.
 
-Verwendet wird src-min-noconflict Version v1.21.1 von https://github.com/ajaxorg/ace-builds/
+Verwendet wird src-min-noconflict Version v1.22.0 von https://github.com/ajaxorg/ace-builds/
 
-https://github.com/ajaxorg/ace-builds/releases/tag/v1.21.1
+https://github.com/ajaxorg/ace-builds/releases/tag/v1.22.0
 
 Website: https://ace.c9.io/
 

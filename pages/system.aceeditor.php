@@ -48,7 +48,7 @@ foreach ($themes as $theme) {
     $select->addOption($theme, $theme);
 }
 
-$field = $form->addRawField('<dl class="rex-form-group form-group"><dt>' . $addon->i18n('config_theme_preview') . '</dt><dd><textarea class="form-control aceeditor themepreview" readonly rows="15" data-theme="' . $addon->getConfig('theme') . '">
+$field = $form->addRawField('<dl class="rex-form-group form-group"><dt>' . $addon->i18n('config_theme_preview') . '</dt><dd><textarea class="form-control rex-js-code themepreview" readonly rows="15" data-theme="' . $addon->getConfig('theme') . '">
 <?php
 function nfact($n) {
     if ($n == 0) {
@@ -65,14 +65,12 @@ $num = trim(fgets(STDIN));
 // ===== PROCESS - Determing the factorial of the input number =====
 $output = "\n\nFactorial " . $num . " = " . nfact($num) . "\n\n";
 echo $output;
-
-?>
 </textarea></dd></dl>');
 
 // AceEditor Options
 $field = $form->addFieldset($addon->i18n('config_legend3'));
 
-$field = $form->addTextAreaField('options', null, ['class' => 'form-control rex-code', 'rows' => 15, 'aceeditor-theme' => 'github', 'aceeditor-mode' => 'json', 'aceeditor-options' => '{"showInvisibles": true}']);
+$field = $form->addTextAreaField('options', null, ['class' => 'form-control rex-js-code', 'rows' => 15, 'aceeditor-theme' => 'github', 'aceeditor-mode' => 'json', 'aceeditor-options' => '{"showInvisibles": true}']);
 $field->setLabel($addon->i18n('config_options'));
 $field->setNotice($addon->i18n('config_options_notice'));
 
@@ -97,6 +95,7 @@ echo $fragment->parse('core/page/section.php');
 $(document).on('rex:ready', function () {
     $('#aceeditor-themes-theme').on('change', function() {
         $('.themepreview').prev().remove();
+        $('textarea.themepreview')[0].style.display = 'block';
         editor = textAreaToAceEditor($('textarea.themepreview')[0]);
         editor.setTheme('ace/theme/' + this.value);
         $('textarea.themepreview').data('theme', this.value);
@@ -104,6 +103,7 @@ $(document).on('rex:ready', function () {
 
     $('#aceeditor-themes-darktheme').on('change', function() {
         $('.themepreview').prev().remove();
+        $('textarea.themepreview')[0].style.display = 'block';
         editor = textAreaToAceEditor($('textarea.themepreview')[0]);
         editor.setTheme('ace/theme/' + this.value);
         $('textarea.themepreview').data('theme', this.value);
@@ -112,6 +112,7 @@ $(document).on('rex:ready', function () {
     $('.dropdown-toggle').on('focus', function() {
         if ($(this).attr('title') != $('textarea.themepreview').data('theme')) {
             $('.themepreview').prev().remove();
+            $('textarea.themepreview')[0].style.display = 'block';
             editor = textAreaToAceEditor($('textarea.themepreview')[0]);
             editor.setTheme('ace/theme/' + $(this).attr('title'));
             $('textarea.themepreview').data('theme', $(this).attr('title'));

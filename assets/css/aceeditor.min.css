@@ -1,1 +1,1 @@
-.acefullscreenhtml {overflow: hidden;}.acefullscreen {position: fixed;top:0;left:0;bottom:0;right:0;width:100% !important;height:100% !important;z-index: 9999999;}.acerexmode{border: solid 1px #c1c9d4;}.acerexdarkmode{border: solid 1px rgba(21, 28, 34, 0.8);}
+.acefullscreenhtml {overflow: hidden;}.acefullscreen {position: fixed;top:0;left:0;bottom:0;right:0;width:100% !important;height:100% !important;z-index: 9999999;}.acerexmode{border: solid 1px #c1c9d4;}.acerexdarkmode{border: solid 1px rgba(21, 28, 34, 0.8);}.ace_editor {resize: vertical;min-height: 75px;}

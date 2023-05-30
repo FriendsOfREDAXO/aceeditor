@@ -19,3 +19,22 @@
 .acerexdarkmode{
     border: solid 1px rgba(21, 28, 34, 0.8);
 }
+
+.ace_editor {
+    resize: vertical;
+    min-height: 75px;
+}
+
+/* Hide Scrollbar when not active
+body .ace_scrollbar {
+    -webkit-transition: opacity .2s ease-in-out;
+       -moz-transition: opacity .2s ease-in-out;
+        -ms-transition: opacity .2s ease-in-out;
+         -o-transition: opacity .2s ease-in-out;
+            transition: opacity .2s ease-in-out;
+    opacity: 0;
+}
+body .ace_editor:hover .ace_scrollbar, body .ace_editor:focus-within .ace_scrollbar, body .ace_editor:active .ace_scrollbar {
+    opacity: 1;
+}
+*/

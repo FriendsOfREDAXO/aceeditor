@@ -1,17 +1,21 @@
 # AceEditor - Changelog
 
-## Version 1.0.3 - 30.05.2023
+## Version 1.0.3 - 31.05.2023
 
 ### Features
 
 * Der AceEditor kann jetzt auch einfach im Frontend eingebunden werden https://friendsofredaxo.github.io/tricks/snippets/aceeditor_im_frontend
 * Readonly-Modus wenn die Textarea das readonly-Attribut hat (z.B. `readonly` oder `readonly="readonly"`)
-* Hinweis zur Verwendung in eigenen Scripten mit der JavaScript-Function `textAreaToAceEditor(textArea)`
+* Hinweise zur individuellen Verwendung in HELP.md ausgelagert. Anzeige am Seitenende der Einstellungen per Click.
+* AceEditor kann jetzt in der Höhe geändert werden (Resize-Grabber unten rechts)
+* Beim speichern der Einstellungen Refresh der Seite für die Darstellung der aktuellen Einstellungen
+* neues Attribut `aceeditor-themedark` für den Dark-Mode
 * JavaScript `aceeditor.js`
   * Abhängigkeiten von jQuery eliminiert, jQuery wird nur noch für das Backend (rex:ready) verwendet wenn vorhanden
   * Code für die Einbindung im Frontend angepasst
   * Code besser kommentiert
   * Check ob eine Textarea an die Function `textAreaToAceEditor(textArea)` übergeben wird
+  * Check ob Textarea bereits in AceEditor umgewandelt wurde
   * Verbesserung um Breite/Höhe zu ermitteln bzw. zu setzen
   * Fullscreen-Modus angepasst, auch Anpassung in `aceeditor.css`
 * Update AceEditor Version src-min-noconflict v1.22.0

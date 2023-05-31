@@ -40,6 +40,12 @@ function textAreaToAceEditor(textArea) {
         if (null !== textArea.getAttribute('aceeditor-width')) { // Width from textarea-Attribute
             return textArea.getAttribute('aceeditor-width');
         }
+        if (null !== textArea.getAttribute('width')) { // Width from textarea-Attribute
+            if (Number.isInteger(parseInt(textArea.getAttribute('width')))) {
+                return textArea.getAttribute('width') + 'px';
+            }
+            return textArea.getAttribute('width');
+        }
         if (null !== textArea.getAttribute('cols')) { // Calc with from cols-Attribute
             width = Number(Number(textArea.getAttribute('cols')) + 1) * (Number(fontSize) / 1.5);
             return width + 'px';
@@ -58,6 +64,12 @@ function textAreaToAceEditor(textArea) {
         }
         if (null !== textArea.getAttribute('aceeditor-height')) { // Height from textarea-Attribute
             return textArea.getAttribute('aceeditor-height');
+        }
+        if (null !== textArea.getAttribute('height')) { // Height from textarea-Attribute
+            if (Number.isInteger(parseInt(textArea.getAttribute('height')))) {
+                return textArea.getAttribute('height') + 'px';
+            }
+            return textArea.getAttribute('height');
         }
         if (null !== textArea.getAttribute('rows')) { // Calc height from rows-Attribute
             height = Number(Number(textArea.getAttribute('rows')) + 1) * 1.5 * Number(fontSize);

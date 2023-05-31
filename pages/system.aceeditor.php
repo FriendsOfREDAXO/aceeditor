@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 $addon = rex_addon::get('aceeditor');
 
+if ('' !== rex_post('_csrf_token', 'string', '')) {
+    echo '<script>window.location.href = "' . rex_url::backendPage('system/aceeditor') . '"</script>';
+}
+
 if (true === rex_plugin::get('be_style', 'customizer')->isInstalled() && 1 === rex_plugin::get('be_style', 'customizer')->getConfig('codemirror')) {
     echo rex_view::warning($addon->i18n('error_codemirror'));
 }
@@ -74,14 +78,32 @@ $field = $form->addTextAreaField('options', null, ['class' => 'form-control rex-
 $field->setLabel($addon->i18n('config_options'));
 $field->setNotice($addon->i18n('config_options_notice'));
 
-// AceEditor Info
-$field = $form->addFieldset($addon->i18n('config_legend4'));
+// AceEditor Info aus HELP.md
+$hilfetext = 'HELP.md not found';
 
-$field = $form->addRawField('<dl class="rex-form-group form-group"><dt></dt><dd><p>'.$addon->i18n('config_infotext1').'</p></dd></dl>');
-$field = $form->addRawField('<dl class="rex-form-group form-group"><dt></dt><dd><p>'.$addon->i18n('config_infotext2').'</p></dd></dl>');
-$field = $form->addRawField('<dl class="rex-form-group form-group"><dt></dt><dd><p>'.$addon->i18n('config_infotext3').'</p></dd></dl>');
-$field = $form->addRawField('<dl class="rex-form-group form-group"><dt></dt><dd><p>'.$addon->i18n('config_infotext4').'</p></dd></dl>');
-$field = $form->addRawField('<dl class="rex-form-group form-group"><dt></dt><dd><p>'.$addon->i18n('config_infotext5').'</p></dd></dl>');
+$path = rex_path::addon('aceeditor') . 'HELP.md';
+$languagePath = substr($path, 0, -3) . '.' . rex_i18n::getLanguage() . '.md';
+if (is_readable($languagePath)) {
+    $path = $languagePath;
+}
+
+$file = rex_file::get($path);
+if (null !== $file) {
+    $parser = rex_markdown::factory();
+    $hilfetext = $parser->parse($file);
+
+    $html = '
+    <div class="panel panel-default">
+        <header class="panel-heading collapsed" data-toggle="collapse" data-target="#collapse-aceeditorinfo">
+            <div class="panel-title"><h4><i class="rex-icon rex-icon-info"></i> ' . $addon->i18n('config_legend4') . '</h4></div>
+        </header>
+        <div id="collapse-aceeditorinfo" class="panel-collapse collapse">
+            <div class="rex-docs"><article class="rex-docs-content">' . $hilfetext . '</article></div>
+        </div>
+    </div>
+    ';
+    $field = $form->addRawField($html);
+}
 
 // Ausgabe des Formulars
 $fragment = new rex_fragment();
@@ -94,16 +116,18 @@ echo $fragment->parse('core/page/section.php');
 <script>
 $(document).on('rex:ready', function () {
     $('#aceeditor-themes-theme').on('change', function() {
-        $('.themepreview').prev().remove();
+        $('textarea.themepreview').prev().remove();
         $('textarea.themepreview')[0].style.display = 'block';
+        $('textarea.themepreview')[0].setAttribute('data-aceactive', 'false');
         editor = textAreaToAceEditor($('textarea.themepreview')[0]);
         editor.setTheme('ace/theme/' + this.value);
         $('textarea.themepreview').data('theme', this.value);
     });
 
     $('#aceeditor-themes-darktheme').on('change', function() {
-        $('.themepreview').prev().remove();
+        $('textarea.themepreview').prev().remove();
         $('textarea.themepreview')[0].style.display = 'block';
+        $('textarea.themepreview')[0].setAttribute('data-aceactive', 'false');
         editor = textAreaToAceEditor($('textarea.themepreview')[0]);
         editor.setTheme('ace/theme/' + this.value);
         $('textarea.themepreview').data('theme', this.value);
@@ -111,8 +135,9 @@ $(document).on('rex:ready', function () {
 
     $('.dropdown-toggle').on('focus', function() {
         if ($(this).attr('title') != $('textarea.themepreview').data('theme')) {
-            $('.themepreview').prev().remove();
+            $('textarea.themepreview').prev().remove();
             $('textarea.themepreview')[0].style.display = 'block';
+            $('textarea.themepreview')[0].setAttribute('data-aceactive', 'false');
             editor = textAreaToAceEditor($('textarea.themepreview')[0]);
             editor.setTheme('ace/theme/' + $(this).attr('title'));
             $('textarea.themepreview').data('theme', $(this).attr('title'));

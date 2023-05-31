@@ -1,5 +1,9 @@
 # AceEditor - Changelog
 
+## Version 1.0.4 - xx.06.2023
+
+* Attribute `height` und `width` der Textarea berücksichtigen. Möglich sind Pixel-Werte oder Prozentangaben
+
 ## Version 1.0.3 - 31.05.2023
 
 ### Features

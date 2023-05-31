@@ -76,6 +76,11 @@ function textAreaToAceEditor(textArea) {
         return null;
     }
 
+    // Check if already AceEditor
+    if (textArea.getAttribute('data-aceactive') === 'true') {
+        return null;
+    }
+
     // Insert DIV for AceEditor
     let editorNode = document.createElement('div');
     textArea.parentNode.insertBefore(editorNode, textArea);
@@ -133,6 +138,7 @@ function textAreaToAceEditor(textArea) {
 
     // Hide textarea
     textArea.style.display = 'none';
+    textArea.setAttribute('data-aceactive', 'true');
 
     // Set theme Default / Darkmode
     let theme = 'eclipse';
@@ -175,10 +181,16 @@ function textAreaToAceEditor(textArea) {
         }
     }
 
-    // Set theme from Attribute `aceeditor-theme`
+    // Set theme from Attribute `aceeditor-theme` or `aceeditor-themedark`
     let attrtheme = textArea.getAttribute('aceeditor-theme');
     if (null !== attrtheme) {
         theme = attrtheme;
+    }
+    if (darkmode === true) {
+        let attrthemedark = textArea.getAttribute('aceeditor-themedark');
+        if (null !== attrthemedark) {
+            theme = attrthemedark;
+        }
     }
 
     // Set theme
@@ -190,7 +202,7 @@ function textAreaToAceEditor(textArea) {
         editor.getSession().setMode('ace/mode/' + mode);
     }
 
-    // Set border color
+    // Set border color (assets/aceeditor.css)
     if (darkmode === true) {
         editor.container.classList.add('acerexdarkmode');
     } else {

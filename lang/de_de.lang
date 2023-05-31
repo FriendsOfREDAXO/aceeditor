@@ -20,12 +20,6 @@ aceeditor_config_options_notice = <b>Achtung</b>: Die Optionen müssen im korrek
 
 aceeditor_config_legend4 = AceEditor individuell verwenden
 
-aceeditor_config_infotext1 = Sofern man selbst den AceEditor mit eigenen Optionen verwenden möchte, bitte folgende Form verwenden:
-aceeditor_config_infotext2 = <code><textarea class="aceeditor" aceeditor-theme="github" aceeditor-mode="php" aceeditor-options='{"showLineNumbers": false, "showGutter": false}'></textarea></code>
-aceeditor_config_infotext3 = Über die Attribute <code>aceeditor-theme</code>, <code>aceeditor-mode</code> und <code>aceeditor-options</code> kann das Verhalten und die Darstellung des Editors individuell angepasst werden.<br><br><code>aceeditor-theme</code>: Name des Themes (<b>ohne</b> ace/theme)<br><code>aceeditor-mode</code>: Sprache für Syntax-Highlighting z.B. <i>php</i>, <i>json</i>, <i>html</i> (<b>ohne</b> ace/mode)<br><code>aceeditor-options</code>: Weitere Optionen für den AceEditor.<br><b>Achtung:</b> Die Optionen müssen im korrekten JSON-Format angegeben werden!
-aceeditor_config_infotext4 = Die Default-Optionen die oben definiert sind können bei individuellen Optionen über das Attribut <code>aceeditor-options</code> entsprechend überschrieben werden!
-aceeditor_config_infotext5 = <b>Verwendung in eigenen Scripten</b><br><br>In eigenen Scripten im Backend kann eine Textarea über die JavaScript-Function <b>textAreaToAceEditor</b> in einen AceEditor umgewandelt werden.<br><code>editor = textAreaToAceEditor($('textarea.themepreview')[0]);</code><br><br>Danach können noch individuelle Optionen gesetzt werden<br><code>editor.setTheme('ace/theme/eclipse');</code>
-
 aceeditor_error_codemirror = AceEditor kann nicht aktiviert werden da das Plugin Codemirror aktiv ist. Codemirror muss deaktiviert werden! Siehe unter System->Customizer.
 aceeditor_error_unzip = Beim entpacken der Assets aus dem AceEditor-Archiv ist ein Fehler aufgetreten!
 aceeditor_success_message = <br>Die Einstellungen können unter <b>System</b> auf der Seite {0} vorgenommen werden.

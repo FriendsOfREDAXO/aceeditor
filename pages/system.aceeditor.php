@@ -14,7 +14,7 @@ if (true === rex_plugin::get('be_style', 'customizer')->isInstalled() && 1 === r
 
 $form = rex_config_form::factory('aceeditor');
 
-// Activate AceEditor and Selectors
+// Activate AceE-ditor and Selectors
 $field = $form->addFieldset($addon->i18n('config_legend1'));
 
 $field = $form->addCheckboxField('active');
@@ -26,7 +26,7 @@ $field->setNotice($addon->i18n('config_selectors_notice'));
 
 $field = $form->addRawField('<dl class="rex-form-group form-group"><dt></dt><dd><p>'.$addon->i18n('config_infotext').'</p></dd></dl>');
 
-// AceEditor Themes
+// Ace-Editor Themes
 $field = $form->addFieldset($addon->i18n('config_legend2'));
 
 $curDir = $addon->getAssetsUrl('vendor/aceeditor/');
@@ -71,17 +71,17 @@ $output = "\n\nFactorial " . $num . " = " . nfact($num) . "\n\n";
 echo $output;
 </textarea></dd></dl>');
 
-// AceEditor Options
+// Ace-Editor Options
 $field = $form->addFieldset($addon->i18n('config_legend3'));
 
-$field = $form->addTextAreaField('options', null, ['class' => 'form-control rex-js-code', 'rows' => 15, 'aceeditor-theme' => 'github', 'aceeditor-mode' => 'json', 'aceeditor-options' => '{"showInvisibles": true}']);
+$field = $form->addTextAreaField('options', null, ['class' => 'form-control rex-js-code', 'rows' => 15, 'aceeditor-theme' => 'github', 'aceeditor-themedark' => 'cobalt', 'aceeditor-mode' => 'json', 'aceeditor-options' => '{"showInvisibles": true}']);
 $field->setLabel($addon->i18n('config_options'));
 $field->setNotice($addon->i18n('config_options_notice'));
 
-// AceEditor Info aus HELP.md
-$hilfetext = 'HELP.md not found';
+// Ace-Editor Info aus README.md
+$helptext = 'README.md not found';
 
-$path = rex_path::addon('aceeditor') . 'HELP.md';
+$path = rex_path::addon('aceeditor') . 'README.md';
 $languagePath = substr($path, 0, -3) . '.' . rex_i18n::getLanguage() . '.md';
 if (is_readable($languagePath)) {
     $path = $languagePath;
@@ -90,7 +90,7 @@ if (is_readable($languagePath)) {
 $file = rex_file::get($path);
 if (null !== $file) {
     $parser = rex_markdown::factory();
-    $hilfetext = $parser->parse($file);
+    $helptext = $parser->parse($file);
 
     $html = '
     <div class="panel panel-default">
@@ -98,7 +98,7 @@ if (null !== $file) {
             <div class="panel-title"><h4><i class="rex-icon rex-icon-info"></i> ' . $addon->i18n('config_legend4') . '</h4></div>
         </header>
         <div id="collapse-aceeditorinfo" class="panel-collapse collapse">
-            <div class="rex-docs"><article class="rex-docs-content">' . $hilfetext . '</article></div>
+            <div class="rex-docs"><article class="rex-docs-content">' . $helptext . '</article></div>
         </div>
     </div>
     ';

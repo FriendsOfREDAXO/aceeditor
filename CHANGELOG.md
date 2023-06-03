@@ -1,8 +1,26 @@
-# AceEditor - Changelog
+# Ace-Editor - Changelog
 
-## Version 1.0.4 - xx.06.2023
+## Version 1.1.0 - 03.06.2023
 
-* Attribute `height` und `width` der Textarea berücksichtigen. Möglich sind Pixel-Werte oder Prozentangaben
+### New Features
+
+* zusätzliche Extensions werden geladen
+  * `beautify`, `keybinding_menu`, `language_tools`, `whitespace`
+  * Default-Options in `package.yml` erweitert
+* Attribute `height` und `width` der Textarea werden berücksichtigt. Möglich sind Pixel-Werte oder Prozentangaben
+
+### Updates
+
+* Wording AceEditor -> Ace-Editor geändert
+* README.md überarbeitet, HELP.md in README.md übernommen, die README wird unter AddOns und bei den AddOn-Einstellungen angezeigt
+* Hinweise bei den AddOn-Einstellungen erweitert
+* im Redonly-Modus alle Keybindings entfernen da sonst die Editor-Einstellungen verändert werden können
+* CSS für Ace-Editor-Dialoge angepasst (aceeditor.css)
+
+### Bugfixes
+
+* Bei Fullscreen z-index auf 9989, da sonst die Ace-Dialoge im Fullscreen-Modus hinter dem Editor lagen
+* bei vorhandenem Attribut aceeditor-theme wurde der Darkmode nicht richtig berücksichtigt
 
 ## Version 1.0.3 - 31.05.2023
 

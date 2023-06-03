@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 $addon = rex_addon::get('aceeditor');
 
-/* AceEditor-Assets entpacken */
+/* Ace-Editor-Assets entpacken */
 $message = '';
 $zipArchive = new ZipArchive();
 
@@ -12,8 +12,8 @@ $zipArchive = new ZipArchive();
 $path = __DIR__ . '/assets/vendor/aceeditor.zip';
 
 try {
-    if (true === $zipArchive->open($path) &&
-        $zipArchive->extractTo($addon->getAssetsPath('vendor/'))
+    if (true === $zipArchive->open($path)
+        && $zipArchive->extractTo($addon->getAssetsPath('vendor/'))
     ) {
         $zipArchive->close();
     } else {

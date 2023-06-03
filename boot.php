@@ -13,7 +13,7 @@ if (true === rex::isBackend() && null !== rex::getUser() && '|1|' === $addon->ge
     }
 
     // Set default selectors if not present
-    if ('' === $config['selectors'] ) {
+    if ('' === $config['selectors']) {
         $config['selectors'] = 'textarea.rex-code, textarea.rex-js-code, textarea.aceeditor, textarea.codemirror';
     }
 

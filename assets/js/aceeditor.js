@@ -1,38 +1,94 @@
 /*
-AceEditor for REDAXO-Backend and Frontend
+Ace-Editor for REDAXO-Backend and Frontend
 
 Compress to `aceeditor.min.js` with https://jscompress.com/
 */
 
-// Load AceEditor for textareas only in REDAXO-Backend using `jQuery` and `rex:ready`
+let aceeditorBasePath = '../assets/addons/aceeditor/vendor/aceeditor/';
+let aceeditorScriptPath = aceeditorBasePath + 'ace.js';
+
+let aceeditorExtensionList = [
+    'beautify',
+    'language_tools',
+    'whitespace'
+];
+
+let loadAceeditorExtensions = () => {
+    return new Promise((resolve, reject) => {
+        let promiseData = [];
+        aceeditorExtensionList.forEach(function (extension) {
+            promiseData.push(loadAceeditorExtensionScript(extension));
+        });
+        Promise.all(promiseData).then(function () {
+            //console.log('The required scripts are loaded successfully!');
+            resolve({ status: true });
+        }).catch(function (extension) {
+            reject({
+                status: false,
+                message: 'Failed to load the script ' + extension
+            });
+        });
+    }
+    )
+};
+
+let loadAceeditorExtensionScript = (extension) => {
+    return new Promise(function (resolve, reject) {
+        try {
+            let scriptData = document.createElement('script');
+            scriptData.src = aceeditorBasePath + 'ext-' + extension + '.js';
+            scriptData.async = false;
+            scriptData.onload = () => {
+                //console.log(extension + ' loaded!');
+                resolve(extension);
+            };
+            scriptData.onerror = () => {
+                //console.log(extension + ' failed to load!');
+                reject(extension);
+            };
+            document.body.appendChild(scriptData);
+        } catch (error) {
+            console.log(error);
+        }
+    });
+};
+
+// Load Ace-Editor for textareas only in REDAXO-Backend using `jQuery` and `rex:ready`
 if (typeof $ === 'function') {
     $(document).on('rex:ready', function () {
 
         // Select textareas
         let aceTextAreas = document.querySelectorAll(rex.aceeditor_selectors);
 
-        // Load AceEditor only if needed!
+        // Load Ace-Editor only if needed!
         if (aceTextAreas.length > 0) {
-            // Load AceEditor-Script
+            // Load Ace-Editor-Script
             var script = document.createElement('script');
-            script.src = '../assets/addons/aceeditor/vendor/aceeditor/ace.js';
+            script.src = aceeditorScriptPath;
+            script.async = false;
             document.head.appendChild(script);
             script.onload = function () {
-                // Transform textareas to AceEditor
-                for (var i = 0; i < aceTextAreas.length; i++) {
-                    let textArea = aceTextAreas[i];
-                    editor = textAreaToAceEditor(textArea);
-                }
+                loadAceeditorExtensions().then(data => {
+                    //console.log('Create Ace-Editor from textarea');
+                    // Transform textareas to Ace-Editor
+                    for (var i = 0; i < aceTextAreas.length; i++) {
+                        let textArea = aceTextAreas[i];
+                        editor = textAreaToAceEditor(textArea);
+                    }
+                })
+                    .catch(err => {
+                        console.error(err);
+                    });
             };
         }
 
     });
 }
 
-// Function for transform textarea to AceEditor, parameter textarea-Element
+// Function for transform textarea to Ace-Editor, parameter textarea-Element
 function textAreaToAceEditor(textArea) {
 
-    // Get width for AceEditor
+    // Get width for Ace-Editor
     function getTextAreaWidth(textArea, fontSize) {
         if (textArea.classList.contains('rex-js-code')) { // REDAXO-Backend default Code-Textareas
             return '100%';
@@ -57,7 +113,7 @@ function textAreaToAceEditor(textArea) {
         return width + 'px';
     }
 
-    // Get height for AceEditor
+    // Get height for Ace-Editor
     function getTextAreaHeight(textArea, fontSize) {
         if (textArea.classList.contains('rex-js-code')) { // REDAXO-Backend default Code-Textareas
             return '500px';
@@ -88,16 +144,16 @@ function textAreaToAceEditor(textArea) {
         return null;
     }
 
-    // Check if already AceEditor
+    // Check if already Ace-Editor
     if (textArea.getAttribute('data-aceactive') === 'true') {
         return null;
     }
 
-    // Insert DIV for AceEditor
-    let editorNode = document.createElement('div');
+    // Insert PRE for Ace-Editor
+    let editorNode = document.createElement('pre');
     textArea.parentNode.insertBefore(editorNode, textArea);
 
-    // Initiate AceEditor and set value of textarea
+    // Initiate Ace-Editor and set value of textarea
     let editor = ace.edit(editorNode);
     editor.getSession().setValue(textArea.value);
 
@@ -126,6 +182,7 @@ function textAreaToAceEditor(textArea) {
     // readonly from Textarea-Attribute
     if (null !== textArea.getAttribute('readonly')) {
         editor.setReadOnly(true);
+        editor.keyBinding.$defaultHandler.commandKeyBinding = {};
     }
 
     // Additional settings from attribute `aceeditor-options`
@@ -141,10 +198,10 @@ function textAreaToAceEditor(textArea) {
         ace_options = Object.assign(ace_options, new_options);
     }
 
-    // Set AceEditor options
+    // Set Ace-Editor options
     editor.setOptions(ace_options);
 
-    // Set width + height for AceEditor
+    // Set width + height for Ace-Editor
     editorNode.style.width = getTextAreaWidth(textArea, editor.getOptions().fontSize);
     editorNode.style.height = getTextAreaHeight(textArea, editor.getOptions().fontSize);
 
@@ -152,11 +209,12 @@ function textAreaToAceEditor(textArea) {
     textArea.style.display = 'none';
     textArea.setAttribute('data-aceactive', 'true');
 
-    // Set theme Default / Darkmode
+    // Set theme Default
     let theme = 'eclipse';
     if (typeof rex === 'object') {
         theme = rex.aceeditor_defaulttheme;
     }
+
     let darkmode = false;
 
     if (typeof rex === 'object') {
@@ -193,13 +251,16 @@ function textAreaToAceEditor(textArea) {
         }
     }
 
-    // Set theme from Attribute `aceeditor-theme` or `aceeditor-themedark`
-    let attrtheme = textArea.getAttribute('aceeditor-theme');
+    // Set theme from Attribute `aceeditor-theme`
+    var attrtheme = textArea.getAttribute('aceeditor-theme');
     if (null !== attrtheme) {
         theme = attrtheme;
     }
+
+    // Set theme from Attribute `aceeditor-themedark`
     if (darkmode === true) {
-        let attrthemedark = textArea.getAttribute('aceeditor-themedark');
+        theme = rex.aceeditor_defaultdarktheme;
+        var attrthemedark = textArea.getAttribute('aceeditor-themedark');
         if (null !== attrthemedark) {
             theme = attrthemedark;
         }
@@ -244,6 +305,28 @@ function textAreaToAceEditor(textArea) {
             editor.container.classList.toggle('acefullscreen');
             document.querySelector('html').classList.toggle('acefullscreenhtml');
             editor.resize();
+        }
+    });
+
+    // Add commands of extensions
+    aceeditorExtensionList.forEach(function (extension) {
+        let ext = ace.require('ace/ext/' + extension);
+        if (typeof ext === 'object') {
+            if (typeof ext.commands === 'object') {
+                editor.commands.addCommands(ext.commands);
+            }
+        }
+    });
+
+    // Extension keybinding_menu
+    editor.commands.addCommand({
+        name: 'showKeyboardShortcuts',
+        bindKey: { win: 'Ctrl-Alt-h', mac: 'Command-Alt-h' },
+        exec: function (editor) {
+            ace.config.loadModule('ace/ext/keybinding_menu', function (module) {
+                module.init(editor);
+                editor.showKeyboardShortcuts();
+            });
         }
     });
 

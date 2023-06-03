@@ -10,7 +10,7 @@
     right:0;
     width:100% !important;
     height:100% !important;
-    z-index: 9999999;
+    z-index: 9989;
 }
 
 .acerexmode{
@@ -22,11 +22,45 @@
 
 .ace_editor {
     resize: vertical;
-    min-height: 75px;
+}
+
+#ace_settingsmenu {
+    font-size: 14px;
+
+}
+#ace_settingsmenu label {
+    font-weight: normal;
+    padding-left: 5px;
+}
+
+#ace_settingsmenu table, #ace_settingsmenu table table {
+    background-color: transparent;
+    width: 100%;
+}
+
+#ace_settingsmenu input[type="checkbox"] {
+    margin: -3px 0 0;
+}
+
+#ace_settingsmenu input,
+#ace_settingsmenu select,
+#ace_settingsmenu checkbox {
+    background-color: #fff;
+}
+
+#kbshortcutmenu {
+    font-size: 14px;
+}
+#kbshortcutmenu h1 {
+    font-size: 18px;
+}
+
+.ace_prompt_container .ace_content {
+    font-size: 15px;
 }
 
 /* Hide Scrollbar when not active
-body .ace_scrollbar {
+body .ace_scrollbar, body .ace_sb-v, body .ace_sb-h {
     -webkit-transition: opacity .2s ease-in-out;
        -moz-transition: opacity .2s ease-in-out;
         -ms-transition: opacity .2s ease-in-out;
@@ -34,7 +68,9 @@ body .ace_scrollbar {
             transition: opacity .2s ease-in-out;
     opacity: 0;
 }
-body .ace_editor:hover .ace_scrollbar, body .ace_editor:focus-within .ace_scrollbar, body .ace_editor:active .ace_scrollbar {
+body .ace_editor:hover .ace_scrollbar, body .ace_editor:focus-within .ace_scrollbar, body .ace_editor:active .ace_scrollbar,
+body .ace_editor:hover .ace_sb-v, body .ace_editor:focus-within .ace_sb-v, body .ace_editor:active .ace_sb-v,
+body .ace_editor:hover .ace_sb-h, body .ace_editor:focus-within .ace_sb-h, body .ace_editor:active .ace_sb-h
+{
     opacity: 1;
-}
-*/
+}*/

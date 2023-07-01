@@ -1,11 +1,11 @@
 # Ace-Editor - The high performance code editor for **REDAXO** - Replacement for codemirror
 
-Dieses AddOn bindet den Code-Editor **Ace-Editor** v1.22.0 im Backend ein.
+Dieses AddOn bindet den Code-Editor **Ace-Editor** v1.23.1 im Backend ein.
 Die Einstellungen zum AddOn sind unter **System** zu finden.
 
-Verwendet wird die *src-min-noconflict* Version v1.22.0 von https://github.com/ajaxorg/ace-builds/
+Verwendet wird die *src-min-noconflict* Version v1.23.1 von https://github.com/ajaxorg/ace-builds/
 
-https://github.com/ajaxorg/ace-builds/releases/tag/v1.22.0
+https://github.com/ajaxorg/ace-builds/releases/tag/v1.23.1
 
 Website: https://ace.c9.io/. Beispiel-Seite zum testen des Editors: https://ace.c9.io/build/kitchen-sink.html
 
@@ -18,10 +18,10 @@ Für die Verwendung des Ace-Editors mit eigenen Optionen in Modulen oder AddOns 
 **Beispiel**:
 
 ```html
-<textarea class="aceeditor" aceeditor-theme="eclipse" aceeditor-mode="php" aceeditor-options='{"showLineNumbers": true, "showGutter": true}'></textarea>
+<textarea class="aceeditor" aceeditor-theme="eclipse" aceeditor-themedark="dracula" aceeditor-mode="php" aceeditor-options='{"showLineNumbers": true, "showGutter": true}'></textarea>
 ```
 
-Die Default-Optionen aus den AddOn-Einstellungen werden immer angewendet!
+> **Hinweis:** Die Default-Optionen aus den AddOn-Einstellungen werden immer angewendet!
 
 Individuelle Optionen können über das Attribut `aceeditor-options` entsprechend gesetzt, oder die Default-Optionen überschrieben werden!
 
@@ -33,7 +33,7 @@ Individuelle Optionen können über das Attribut `aceeditor-options` entsprechen
 |--------- | -------------- |
 | aceeditor-theme | Name des Themes z.B. `eclipse` (ohne ace/theme) |
 | aceeditor-themedark | Name des Themes im Dark-Mode z.B. `dracula` (ohne ace/theme) |
-| aceeditor-mode | Sprache für das Syntax-Highlighting z.B. `php`, `json`, `html` (ohne ace/mode) |
+| aceeditor-mode | Sprache für das Syntax-Highlighting z.B. `php`, `json`, `html`, `javascript`, `yaml`, `xml` (ohne ace/mode) |
 | aceeditor-options | Weitere Optionen für den Ace-Editor.<br>Achtung: Die Optionen müssen im korrekten JSON-Format angegeben werden!<br>z.B. `{"showLineNumbers": true, "showGutter": true}` |
 | aceeditor-width | Breite des Editors, z.B. `800px`, `100%` |
 | aceeditor-height | Höhe des Editors, z.B. `500px` |

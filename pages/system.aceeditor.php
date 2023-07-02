@@ -15,7 +15,7 @@ if (true === rex_plugin::get('be_style', 'customizer')->isInstalled() && 1 === r
 $form = rex_config_form::factory('aceeditor');
 
 // Activate AceE-ditor and Selectors
-$field = $form->addFieldset($addon->i18n('config_legend1'));
+$form->addFieldset($addon->i18n('config_legend1'));
 
 $field = $form->addCheckboxField('active');
 $field->addOption($addon->i18n('config_active'), 1);
@@ -27,7 +27,7 @@ $field->setNotice($addon->i18n('config_selectors_notice'));
 $field = $form->addRawField('<dl class="rex-form-group form-group"><dt></dt><dd><p>'.$addon->i18n('config_infotext').'</p></dd></dl>');
 
 // Ace-Editor Themes
-$field = $form->addFieldset($addon->i18n('config_legend2'));
+$form->addFieldset($addon->i18n('config_legend2'));
 
 $curDir = $addon->getAssetsUrl('vendor/aceeditor/');
 $themes = [];
@@ -72,7 +72,7 @@ echo $output;
 </textarea></dd></dl>');
 
 // Ace-Editor Options
-$field = $form->addFieldset($addon->i18n('config_legend3'));
+$form->addFieldset($addon->i18n('config_legend3'));
 
 $field = $form->addTextAreaField('options', null, ['class' => 'form-control rex-js-code', 'rows' => 15, 'aceeditor-theme' => 'github', 'aceeditor-themedark' => 'cobalt', 'aceeditor-mode' => 'json', 'aceeditor-options' => '{"showInvisibles": true}']);
 $field->setLabel($addon->i18n('config_options'));

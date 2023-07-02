@@ -1,5 +1,13 @@
 # Ace-Editor - Changelog
 
+## Version 1.2.0 - 02.07.2023
+
+### Updates
+
+* Update Ace-Editor Version src-min-noconflict v1.23.1
+* README.md angepasst/erweitert
+* Fix rexstan errors in `pages\system.aceeditor.php`
+
 ## Version 1.1.0 - 03.06.2023
 
 ### New Features

@@ -1,5 +1,11 @@
 # Ace-Editor - Changelog
 
+## Version 1.2.1 - 03.07.2023
+
+### Bugfixes
+
+* Beim Update über den Installer wurden die Assets nicht aktualisiert
+
 ## Version 1.2.0 - 02.07.2023
 
 ### Updates

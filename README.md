@@ -24,7 +24,7 @@ Beispiel-Seite zum testen des Editors: https://ace.c9.io/build/kitchen-sink.html
 Eine Übersicht der Default-Shortcuts gibt es hier: https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts
 
 | Windows/Linux | Mac | Action |
-|--------- | -------------- |
+|-------------- | --- |------ |
 | ESC | Command | Toggle Fullscreen-Modus |
 | F11 | F11 | Toggle Fullscreen-Modus |
 | F1 | F1 | Open command palette |

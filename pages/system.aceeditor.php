@@ -2,6 +2,19 @@
 
 declare(strict_types=1);
 
+namespace FriendsOfRedaxo\AceEditor;
+
+use rex_addon;
+use rex_config_form;
+use rex_file;
+use rex_fragment;
+use rex_i18n;
+use rex_markdown;
+use rex_path;
+use rex_plugin;
+use rex_url;
+use rex_view;
+
 $addon = rex_addon::get('aceeditor');
 
 if ('' !== rex_post('_csrf_token', 'string', '')) {
@@ -24,7 +37,7 @@ $field = $form->addInputField('text', 'selectors', null, ['class' => 'form-contr
 $field->setLabel($addon->i18n('config_selectors'));
 $field->setNotice($addon->i18n('config_selectors_notice'));
 
-$field = $form->addRawField('<dl class="rex-form-group form-group"><dt></dt><dd><p>'.$addon->i18n('config_infotext').'</p></dd></dl>');
+$field = $form->addRawField('<dl class="rex-form-group form-group"><dt></dt><dd><p>' . $addon->i18n('config_infotext') . '</p></dd></dl>');
 
 // Ace-Editor Themes
 $form->addFieldset($addon->i18n('config_legend2'));

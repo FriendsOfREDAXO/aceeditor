@@ -2,6 +2,15 @@
 
 declare(strict_types=1);
 
+namespace FriendsOfRedaxo\AceEditor;
+
+use Exception;
+use rex_addon;
+use rex_functional_exception;
+use rex_i18n;
+use rex_url;
+use ZipArchive;
+
 $addon = rex_addon::get('aceeditor');
 
 /* Ace-Editor-Assets entpacken */

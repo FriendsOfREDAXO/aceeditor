@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+namespace FriendsOfRedaxo\AceEditor;
+
+use rex_addon;
+
 $addon = rex_addon::get('aceeditor');
 
 /* Ace-Editor-Assets entpacken */

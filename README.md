@@ -1,13 +1,37 @@
-# Ace-Editor - The high performance code editor for **REDAXO** - Replacement for codemirror
+# Ace-Editor
 
-Dieses AddOn bindet den Code-Editor **Ace-Editor** v1.23.1 im Backend ein.
-Die Einstellungen zum AddOn sind unter **System** zu finden.
+## The high performance code editor for **REDAXO** (Replacement for codemirror)
 
-Verwendet wird die *src-min-noconflict* Version v1.23.1 von https://github.com/ajaxorg/ace-builds/
+![Screenshot aceeditor](https://raw.githubusercontent.com/FriendsOfREDAXO/aceeditor/assets/aceeditor.webp "Screenshot aceeditor")
 
-https://github.com/ajaxorg/ace-builds/releases/tag/v1.23.1
+Dieses AddOn bindet den Code-Editor **Ace-Editor** v1.35.2 im Backend ein.
+Die Einstellungen zum AddOn sind unter **System->Ace-Editor** zu finden.
 
-Website: https://ace.c9.io/. Beispiel-Seite zum testen des Editors: https://ace.c9.io/build/kitchen-sink.html
+> **Hinweis:** Der Ace-Editor bietet nicht nur Syntax-Highlighting wie der codemirror, sondern zeigt auch gleich Syntax-Fehler in Echtzeit an (Siehe Screenshot).
+
+Verwendet wird die *src-min-noconflict* Version v1.35.2 von https://github.com/ajaxorg/ace-builds/
+
+https://github.com/ajaxorg/ace-builds/releases/tag/v1.35.2
+
+Website: https://ace.c9.io/
+
+Beispiel-Seite zum testen des Editors: https://ace.c9.io/build/kitchen-sink.html
+
+> **Hinweis:** Um den Ace-Editor in REDAXO zu verwenden muss der *codemirror* unter **System->Customizer** deaktiviert werden!
+
+## Tastatur Shortcuts
+
+Eine Übersicht der Default-Shortcuts gibt es hier: https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts
+
+| Windows/Linux | Mac | Action |
+|--------- | -------------- |
+| ESC | Command | Toggle Fullscreen-Modus |
+| F11 | F11 | Toggle Fullscreen-Modus |
+| F1 | F1 | Open command palette |
+| Ctrl-F | Command-F | Find |
+| Ctrl-H | Command-Option-F | Replace |
+| Ctrl-, | Command-, | Show the settings menu |
+| Ctrl-Alt-H | Command-Alt-H | Show shortcuts |
 
 ## Ace-Editor individuell verwenden
 

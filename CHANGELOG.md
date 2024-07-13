@@ -1,5 +1,17 @@
 # Ace-Editor - Changelog
 
+## Version 1.3.0 - 13.07.2023
+
+### Features
+
+* Update Ace-Editor Version src-min-noconflict v1.35.2
+* Erweiterung der README.md
+* namespace FriendsOfRedaxo\AceEditor
+
+### Bugfixes
+
+* Keine
+
 ## Version 1.2.1 - 03.07.2023
 
 ### Bugfixes

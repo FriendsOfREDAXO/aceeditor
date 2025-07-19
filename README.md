@@ -4,14 +4,14 @@
 
 ![Screenshot aceeditor](https://raw.githubusercontent.com/FriendsOfREDAXO/aceeditor/assets/aceeditor.webp "Screenshot aceeditor")
 
-Dieses AddOn bindet den Code-Editor **Ace-Editor** v1.35.2 im Backend ein.
+Dieses AddOn bindet den Code-Editor **Ace-Editor** v1.43.2 im Backend ein.
 Die Einstellungen zum AddOn sind unter **System->Ace-Editor** zu finden.
 
 > **Hinweis:** Der Ace-Editor bietet nicht nur Syntax-Highlighting wie der codemirror, sondern zeigt auch gleich Syntax-Fehler in Echtzeit an (Siehe Screenshot).
 
-Verwendet wird die *src-min-noconflict* Version v1.35.2 von https://github.com/ajaxorg/ace-builds/
+Verwendet wird die *src-min-noconflict* Version v1.43.2 von https://github.com/ajaxorg/ace-builds/
 
-https://github.com/ajaxorg/ace-builds/releases/tag/v1.35.2
+https://github.com/ajaxorg/ace-builds/releases/tag/v1.43.2
 
 Website: https://ace.c9.io/
 

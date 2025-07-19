@@ -20,6 +20,6 @@ aceeditor_config_options_notice = <b>Achtung</b>: Die Optionen müssen im korrek
 
 aceeditor_config_legend4 = Ace-Editor individuell verwenden
 
-aceeditor_error_codemirror = Ace-Editor kann nicht aktiviert werden da das Plugin Codemirror aktiv ist. Codemirror muss deaktiviert werden! Siehe unter System->Customizer.
+aceeditor_error_codemirror = <b>ACHTUNG</b>: Ace-Editor kann nicht aktiviert werden da das Plugin <code>Codemirror</code> aktiv ist. Codemirror muss deaktiviert werden! Siehe unter <code>System->Customizer</code>.
 aceeditor_error_unzip = Beim entpacken der Assets aus dem Ace-Editor-Archiv ist ein Fehler aufgetreten!
 aceeditor_success_message = <br>Die Einstellungen können unter <b>System</b> auf der Seite {0} vorgenommen werden.

@@ -22,7 +22,7 @@ if ('' !== rex_post('_csrf_token', 'string', '')) {
 }
 
 if (true === rex_plugin::get('be_style', 'customizer')->isInstalled() && 1 === rex_plugin::get('be_style', 'customizer')->getConfig('codemirror')) {
-    echo rex_view::warning($addon->i18n('error_codemirror'));
+    echo rex_view::error($addon->i18n('error_codemirror'));
 }
 
 $form = rex_config_form::factory('aceeditor');
@@ -43,29 +43,67 @@ $field = $form->addRawField('<dl class="rex-form-group form-group"><dt></dt><dd>
 $form->addFieldset($addon->i18n('config_legend2'));
 
 $curDir = $addon->getAssetsUrl('vendor/aceeditor/');
-$themes = [];
+$themes_light = [];
+$themes_dark = [];
+$themes_misc = [];
+
 $files = glob($curDir . 'theme-*.js');
 if (false !== $files) {
     foreach ($files as $filename) {
-        $themes[] = str_replace('theme-', '', substr(rex_path::basename($filename), 0, -3));
+        $file = rex_file::get($filename);
+        if ($file === null) {
+            $file = '';
+        }
+
+        $theme_name = str_replace('theme-', '', substr(rex_path::basename($filename), 0, -3));
+        if (str_contains($file, 't.isDark=!0')) {
+            $themes_dark[] = $theme_name;
+        } elseif (str_contains($file, 't.isDark=!1')) {
+            $themes_light[] = $theme_name;
+        } else {
+            $themes_misc[] = $theme_name;
+        }
     }
 }
 
-$field = $form->addSelectField('theme', $value = null, ['class' => 'form-control selectpicker']);
+$field = $form->addSelectField('theme', $value = null, ['class' => 'form-control selectpicker', 'data-size' => '10']);
 $field->setLabel($addon->i18n('config_theme'));
 $select = $field->getSelect();
-foreach ($themes as $theme) {
+$select->addOptgroup('LIGHT');
+foreach ($themes_light as $theme) {
     $select->addOption($theme, $theme);
 }
 
-$field = $form->addSelectField('darktheme', $value = null, ['class' => 'form-control selectpicker']);
+$select->addOptgroup('DARK');
+foreach ($themes_dark as $theme) {
+    $select->addOption($theme, $theme);
+}
+
+$select->addOptgroup('MISC');
+foreach ($themes_misc as $theme) {
+    $select->addOption($theme, $theme);
+}
+
+$field = $form->addSelectField('darktheme', $value = null, ['class' => 'form-control selectpicker', 'data-size' => '10']);
 $field->setLabel($addon->i18n('config_darktheme'));
 $select = $field->getSelect();
-foreach ($themes as $theme) {
+$select->addOptgroup('LIGHT');
+foreach ($themes_light as $theme) {
     $select->addOption($theme, $theme);
 }
 
-$field = $form->addRawField('<dl class="rex-form-group form-group"><dt>' . $addon->i18n('config_theme_preview') . '</dt><dd><textarea class="form-control rex-js-code themepreview" readonly rows="15" data-theme="' . $addon->getConfig('theme') . '">
+$select->addOptgroup('DARK');
+foreach ($themes_dark as $theme) {
+    $select->addOption($theme, $theme);
+}
+
+$select->addOptgroup('MISC');
+foreach ($themes_misc as $theme) {
+    $select->addOption($theme, $theme);
+}
+
+// @phpstan-ignore-next-line
+$field = $form->addRawField('<dl class="rex-form-group form-group"><dt>' . $addon->i18n('config_theme_preview') . '</dt><dd><textarea class="form-control aceeditor themepreview" readonly rows="18" data-theme="' . $addon->getConfig('theme') . '">
 <?php
 function nfact($n) {
     if ($n == 0) {
@@ -87,7 +125,7 @@ echo $output;
 // Ace-Editor Options
 $form->addFieldset($addon->i18n('config_legend3'));
 
-$field = $form->addTextAreaField('options', null, ['class' => 'form-control rex-js-code', 'rows' => 15, 'aceeditor-theme' => 'github', 'aceeditor-themedark' => 'cobalt', 'aceeditor-mode' => 'json', 'aceeditor-options' => '{"showInvisibles": true}']);
+$field = $form->addTextAreaField('options', null, ['class' => 'form-control aceeditor', 'rows' => 18, 'aceeditor-theme' => 'eclipse', 'aceeditor-themedark' => 'dracula', 'aceeditor-mode' => 'json', 'aceeditor-options' => '{"showInvisibles": true}']);
 $field->setLabel($addon->i18n('config_options'));
 $field->setNotice($addon->i18n('config_options_notice'));
 
@@ -128,24 +166,6 @@ echo $fragment->parse('core/page/section.php');
 
 <script>
 $(document).on('rex:ready', function () {
-    $('#aceeditor-themes-theme').on('change', function() {
-        $('textarea.themepreview').prev().remove();
-        $('textarea.themepreview')[0].style.display = 'block';
-        $('textarea.themepreview')[0].setAttribute('data-aceactive', 'false');
-        editor = textAreaToAceEditor($('textarea.themepreview')[0]);
-        editor.setTheme('ace/theme/' + this.value);
-        $('textarea.themepreview').data('theme', this.value);
-    });
-
-    $('#aceeditor-themes-darktheme').on('change', function() {
-        $('textarea.themepreview').prev().remove();
-        $('textarea.themepreview')[0].style.display = 'block';
-        $('textarea.themepreview')[0].setAttribute('data-aceactive', 'false');
-        editor = textAreaToAceEditor($('textarea.themepreview')[0]);
-        editor.setTheme('ace/theme/' + this.value);
-        $('textarea.themepreview').data('theme', this.value);
-    });
-
     $('.dropdown-toggle').on('focus', function() {
         if ($(this).attr('title') != $('textarea.themepreview').data('theme')) {
             $('textarea.themepreview').prev().remove();
@@ -156,5 +176,24 @@ $(document).on('rex:ready', function () {
             $('textarea.themepreview').data('theme', $(this).attr('title'));
         }
     });
+
+    $('#ace-editor-themes-theme').on('change', function() {
+        $('textarea.themepreview').prev().remove();
+        $('textarea.themepreview')[0].style.display = 'block';
+        $('textarea.themepreview')[0].setAttribute('data-aceactive', 'false');
+        editor = textAreaToAceEditor($('textarea.themepreview')[0]);
+        editor.setTheme('ace/theme/' + this.value);
+        $('textarea.themepreview').data('theme', this.value);
+    });
+
+    $('#ace-editor-themes-darktheme').on('change', function() {
+        $('textarea.themepreview').prev().remove();
+        $('textarea.themepreview')[0].style.display = 'block';
+        $('textarea.themepreview')[0].setAttribute('data-aceactive', 'false');
+        editor = textAreaToAceEditor($('textarea.themepreview')[0]);
+        editor.setTheme('ace/theme/' + this.value);
+        $('textarea.themepreview').data('theme', this.value);
+    });
+
 });
 </script>

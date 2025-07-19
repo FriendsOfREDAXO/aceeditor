@@ -8,13 +8,14 @@ use rex;
 use rex_addon;
 use rex_plugin;
 use rex_view;
+use rex_be_controller;
 
 $addon = rex_addon::get('aceeditor');
 
 $config = $addon->getConfig();
 
 if (true === rex::isBackend() && null !== rex::getUser() && '|1|' === $addon->getConfig('active')) {
-    if (true === rex_plugin::get('be_style', 'customizer')->isInstalled() && 1 === rex_plugin::get('be_style', 'customizer')->getConfig('codemirror')) {
+    if (true === rex_plugin::get('be_style', 'customizer')->isInstalled() && 1 === rex_plugin::get('be_style', 'customizer')->getConfig('codemirror') && rex_be_controller::getCurrentPagePart(2) !== 'aceeditor') {
         return;
     }
 

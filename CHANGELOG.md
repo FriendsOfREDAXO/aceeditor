@@ -1,5 +1,24 @@
 # Ace-Editor - Changelog
 
+## Version 1.4.0 - 19.07.2025
+
+### Features
+
+* Update Ace-Editor Version src-min-noconflict v1.43.2 @aeberhard
+* Code-Quality - AddOn-Code überarbeitet mit REDAXO-Coding Standards (2.15.0) + rexstan (2.0.18) + rexfactor (0.1.24) @aeberhard
+  * Level 10, REDAXO SuperGlobals, Bleeding-Edge, Strict-Mode, Strict-Mode, PHPUnit, phpstan-dba, cognitive complexity, report mixed, dead code
+* PHP Maximalversion auf <9 gesetzt @aeberhard
+* Select-Felder für Theme-Auswahl nach LIGHT/DARK in optgroups aufgeteilt @aeberhard
+* Select-Felder für Theme-Auswahl in der Höhe beschränkt @aeberhard
+* Hinweismeldung angepasst wenn Codemirror noch aktiviert ist @aeberhard
+* Update LICENSE @aeberhard
+* Update README @aeberhard
+
+### Bugfixes
+
+* Ace-Editor nur auf der Einstellungen-Seite einbinden auch wenn der Codemirror aktiv ist
+* Vorschau bei Theme-Wechsel klappte nicht zuverlässig
+
 ## Version 1.3.0 - 13.07.2023
 
 ### Features
